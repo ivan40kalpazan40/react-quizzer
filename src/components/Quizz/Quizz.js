@@ -52,7 +52,7 @@ const Quizz = () => {
               quizz[counter].incorrect_answers
             ).map((answer, i) => (
               <li className='collection-item' key={i}>
-                {answer}
+                {replaceHTMLEntities(answer)}
               </li>
             ))}
         </ul>

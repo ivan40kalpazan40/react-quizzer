@@ -12,7 +12,10 @@ export const replaceHTMLEntities = (string) => {
     let output = string
       .replace(/&quot;/g, '"')
       .replace(/&amp;/g, '&')
-      .replace(/&#039;/g, "'");
+      .replace(/&#039;/g, "'")
+      .replace(/&euml;/g, 'ë')
+      .replace(/&oacute;/g, 'ó')
+      .replace(/&Uuml;/g, 'Ü');
     return output;
   }
 };
