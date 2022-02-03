@@ -1,6 +1,9 @@
 const CategoryListItem = ({ category }) => {
   return (
-    <a href='/categories/id/name' className='collection-item blue-text'>
+    <a
+      href={`/categories/${category.id}/${category.name}`}
+      className='collection-item blue-text'
+    >
       {category.name}
     </a>
   );
