@@ -8,6 +8,7 @@ const Quizz = () => {
   const [counter, setCounter] = useState(0);
   const [answers, setAnswers] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [score, setScore] = useState(0);
   useEffect(() => {
     setLoading(true);
     fetch(
@@ -32,11 +33,26 @@ const Quizz = () => {
   };
 
   const countUp = (e) => {
-    setCounter((state) => counter + 1);
+    if (counter < 14) setCounter((state) => counter + 1);
   };
+
+  const clickToAnswerHandler = (e) => {
+    e.preventDefault();
+    if (
+      replaceHTMLEntities(e.target.textContent) ===
+      replaceHTMLEntities(quizz[counter].correct_answer)
+    ) {
+      setScore((state) => score + 1);
+    }
+    console.log(e.target.textContent);
+    countUp();
+  };
+
   return (
     <div className='container center'>
       <h1>Quizz</h1>
+      <p>question {counter + 1}/15</p>
+      <p>Score: {score}</p>
       {loading ? (
         <h1>Loading...</h1>
       ) : (
@@ -52,7 +68,9 @@ const Quizz = () => {
               quizz[counter].incorrect_answers
             ).map((answer, i) => (
               <li className='collection-item' key={i}>
-                {replaceHTMLEntities(answer)}
+                <a href='#!' onClick={clickToAnswerHandler}>
+                  {replaceHTMLEntities(answer)}
+                </a>
               </li>
             ))}
         </ul>
