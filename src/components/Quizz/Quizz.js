@@ -1,39 +1,27 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { replaceHTMLEntities, randomizeArray } from '../../config/util.config';
+import { getQuizzByCategoryAndDifficulty } from '../../services/apiServices';
+import QuizzContext from '../../context/quizzContext/quizzContext';
 
 const Quizz = () => {
   const { id, difficulty } = useParams();
-  const [quizz, setQuizz] = useState([]);
-  const [counter, setCounter] = useState(0);
+  // const [counter, setCounter] = useState(0);
   const [answers, setAnswers] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [score, setScore] = useState(0);
+  const { quizz, loading, counter, countUp, getQuizz } =
+    useContext(QuizzContext);
+
   useEffect(() => {
-    setLoading(true);
-    fetch(
-      `https://opentdb.com/api.php?amount=15&category=${id}&difficulty=${difficulty}`
-    )
-      .then((res) => res.json())
-      .then((response) => {
-        setQuizz(response.results);
-        setAnswers((state) => [
-          ...response.results[0].incorrect_answers,
-          response.results[0].correct_answer,
-        ]);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error(err.message);
-        setLoading(false);
-      });
+    // setLoading(true);
+    getQuizz(id, difficulty, 12);
   }, []);
   const listenForChange = (e) => {
     console.log(e.target);
   };
 
-  const countUp = (e) => {
-    if (counter < 14) setCounter((state) => counter + 1);
+  const countHandler = (e) => {
+    if (counter < 14) countUp();
   };
 
   const clickToAnswerHandler = (e) => {
@@ -75,7 +63,7 @@ const Quizz = () => {
             ))}
         </ul>
       )}
-      <button onClick={countUp}>Next</button>
+      <button onClick={countHandler}>Next</button>
     </div>
   );
 };
