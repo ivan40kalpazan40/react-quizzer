@@ -5,6 +5,7 @@ import quizzReducer from './quizzReducer';
 import {
   getQuizzByCategoryAndDifficulty,
   getCategoryInfoById,
+  getAllCategories,
 } from '../../services/apiServices';
 
 const QuizzStateProvider = (props) => {
@@ -14,6 +15,7 @@ const QuizzStateProvider = (props) => {
     counter: 0,
     score: 0,
     info: {},
+    categories: [],
   };
   const [state, dispatch] = useReducer(quizzReducer, initialState);
 
@@ -44,6 +46,20 @@ const QuizzStateProvider = (props) => {
       dispatch({ type: 'GET_INFO', payload: info });
     } catch (err) {
       console.error(err.message);
+      setLoading();
+    }
+  };
+
+  // GET ALL CATEGORIES
+  const getCategories = async () => {
+    try {
+      const response = await getAllCategories();
+      const categories = await response.trivia_categories;
+      console.log(`CATEGORIES from state `, categories);
+      setLoading();
+      dispatch({ type: 'GET_CATEGORIES', payload: categories });
+    } catch (err) {
+      console.log(err.message);
       setLoading();
     }
   };
@@ -81,11 +97,13 @@ const QuizzStateProvider = (props) => {
         counter: state.counter,
         score: state.score,
         info: state.info,
+        categories: state.categories,
         countUp,
         scoreUp,
         resetCounter,
         getQuizz,
         getInfo,
+        getCategories,
       }}
     >
       {props.children}

@@ -1,21 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+import QuizzContext from '../../context/quizzContext/quizzContext';
 import CategoryListItem from './CategoryListItem';
 const Categories = () => {
-  const [categories, setCategories] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const { loading, categories, getCategories } = useContext(QuizzContext);
   useEffect(() => {
-    setLoading(true);
-    fetch(`https://opentdb.com/api_category.php`)
-      .then((res) => res.json())
-      .then((response) => {
-        setCategories(response.trivia_categories);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error(err.message);
-        setCategories(null);
-        setLoading(false);
-      });
+    getCategories();
   }, []);
   return (
     <>

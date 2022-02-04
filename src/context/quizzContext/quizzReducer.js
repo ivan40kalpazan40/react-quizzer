@@ -13,6 +13,8 @@ const quizzReducer = (state, action) => {
       return { ...state, counter: state.counter + 1 };
     case 'COUNTER_RESET':
       return { ...state, counter: action.payload };
+    case 'GET_CATEGORIES':
+      return { ...state, categories: action.payload };
     default:
       return state;
   }

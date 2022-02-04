@@ -9,3 +9,9 @@ export const getCategoryInfoById = (id) => {
     res.json()
   );
 };
+
+export const getAllCategories = () => {
+  return fetch(`https://opentdb.com/api_category.php`).then((res) =>
+    res.json()
+  );
+};
