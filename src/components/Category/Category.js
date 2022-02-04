@@ -1,24 +1,14 @@
 import { useParams, Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useContext } from 'react';
+import QuizzContext from '../../context/quizzContext/quizzContext';
 import { underscoreStringNormalizer } from '../../config/util.config';
 
 const Category = () => {
   const { id, name } = useParams();
-  const [info, setInfo] = useState({});
-  const [loading, setLoading] = useState(false);
+  const { loading, info, getInfo } = useContext(QuizzContext);
 
   useEffect(() => {
-    setLoading(true);
-    fetch(`https://opentdb.com/api_count.php?category=${id}`)
-      .then((res) => res.json())
-      .then((response) => {
-        setInfo(response.category_question_count);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error(err.message);
-        setLoading(false);
-      });
+    getInfo(id);
   }, []);
 
   return (
@@ -35,10 +25,8 @@ const Category = () => {
             {Object.keys(info).map((key) => {
               return (
                 <li className='collection-item blue-grey-text' key={key}>
-                  <a href='#!'>
-                    <span className='teal badge white-text'>{info[key]}</span>
-                    {underscoreStringNormalizer(key)}
-                  </a>
+                  <span className='teal badge white-text'>{info[key]}</span>
+                  {underscoreStringNormalizer(key)}
                 </li>
               );
             })}
