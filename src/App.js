@@ -5,8 +5,8 @@ import Home from './components/Home';
 import Navbar from './components/Navbar';
 import Category from './components/Category';
 import Quizz from './components/Quizz';
+import Results from './components/Results';
 // import Footer from './components/Footer';
-
 function App() {
   return (
     <main className='main'>
@@ -16,6 +16,7 @@ function App() {
         <Route path='/categories' element={<Categories />} />
         <Route path='/categories/:id/:name' element={<Category />} />
         <Route path='/quizz/:id/:difficulty' element={<Quizz />} />
+        <Route path='/results' element={<Results />} />
       </Routes>
       {/* <Footer /> */}
     </main>

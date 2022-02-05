@@ -1,5 +1,5 @@
 import { useEffect, useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import {
   replaceHTMLEntities,
   randomizeArray,
@@ -9,6 +9,7 @@ import QuizzContext from '../../context/quizzContext/quizzContext';
 
 const Quizz = () => {
   const { id, difficulty } = useParams();
+  const navigate = useNavigate();
 
   const {
     quizz,
@@ -26,15 +27,13 @@ const Quizz = () => {
     getQuizz(id, difficulty, parametarizer(15, difficulty, info));
     console.log(`quizzEffect `, quizz);
   }, []);
-  const listenForChange = (e) => {
-    console.log('change', e.target);
-  };
 
   const countHandler = (e) => {
     if (counter < parametarizer(15, difficulty, info) - 1) {
       countUp();
     } else {
       // resetCounter();
+      navigate('/results');
     }
   };
 
@@ -61,9 +60,7 @@ const Quizz = () => {
       ) : quizz.length > 0 ? (
         <ul className='collection with-header'>
           <li className='collection-header'>
-            <h4 onChange={listenForChange}>
-              {replaceHTMLEntities(quizz[counter]?.question)}
-            </h4>
+            <h4>{replaceHTMLEntities(quizz[counter]?.question)}</h4>
           </li>
           {randomizeArray(
             quizz[counter].correct_answer,
