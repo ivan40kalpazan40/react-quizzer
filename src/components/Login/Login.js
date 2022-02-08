@@ -1,8 +1,22 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import AuthContext from '../../context/authContext/authContext';
+import AlertContext from '../../context/alertContext/alertContext';
 
 const Login = () => {
-  const { login } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const { login, isAuthenticated, error, clearErrors } =
+    useContext(AuthContext);
+  const { setAlert } = useContext(AlertContext);
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/');
+    }
+    if (error === 'You must enter correct username and password') {
+      setAlert(error, 'danger');
+      clearErrors();
+    }
+  }, [error, isAuthenticated]);
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();

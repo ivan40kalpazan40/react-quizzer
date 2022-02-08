@@ -81,6 +81,7 @@ const AuthStateProvider = (props) => {
         error: state.error,
         login,
         register,
+        clearErrors,
       }}
     >
       {props.children}

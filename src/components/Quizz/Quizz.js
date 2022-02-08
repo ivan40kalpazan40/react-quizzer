@@ -6,7 +6,7 @@ import {
   parametarizer,
 } from '../../config/util.config';
 import QuizzContext from '../../context/quizzContext/quizzContext';
-
+import { isAuth } from '../../HOC/isAuth';
 const Quizz = () => {
   const { id, difficulty } = useParams();
   const navigate = useNavigate();
@@ -81,4 +81,4 @@ const Quizz = () => {
   );
 };
 
-export default Quizz;
+export default isAuth(Quizz);
