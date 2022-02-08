@@ -11,10 +11,10 @@ const Navbar = () => {
             <Link to='/categories'>Quizz Categories</Link>
           </li>
           <li>
-            <a href='#'>Components</a>
+            <Link to='/auth/login'>Login</Link>
           </li>
           <li>
-            <a href='collapsible.html'>JavaScript</a>
+            <Link to='/auth/register'>Register</Link>
           </li>
         </ul>
       </div>
