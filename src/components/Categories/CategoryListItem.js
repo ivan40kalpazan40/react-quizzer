@@ -1,11 +1,12 @@
+import { Link } from 'react-router-dom';
 const CategoryListItem = ({ category }) => {
   return (
-    <a
-      href={`/categories/${category.id}/${category.name}`}
+    <Link
+      to={`/categories/${category.id}/${category.name}`}
       className='collection-item blue-text'
     >
       {category.name}
-    </a>
+    </Link>
   );
 };
 

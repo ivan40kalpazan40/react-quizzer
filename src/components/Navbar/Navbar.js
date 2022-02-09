@@ -9,7 +9,6 @@ const Navbar = () => {
         <Link to='/' className='brand-logo'>
           qzrr |
         </Link>
-
         <ul id='nav-mobile' className='right hide-on-med-and-down'>
           {token ? (
             <>
