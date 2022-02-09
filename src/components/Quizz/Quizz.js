@@ -18,12 +18,15 @@ const Quizz = () => {
     score,
     info,
     scoreUp,
+    resetScore,
     countUp,
     resetCounter,
     getQuizz,
   } = useContext(QuizzContext);
 
   useEffect(() => {
+    resetScore();
+    resetCounter();
     getQuizz(id, difficulty, parametarizer(15, difficulty, info));
     console.log(`quizzEffect `, quizz);
   }, []);
@@ -38,6 +41,7 @@ const Quizz = () => {
   };
 
   const clickToAnswerHandler = (e) => {
+    e.preventDefault();
     if (
       replaceHTMLEntities(e.target.textContent) ===
       replaceHTMLEntities(quizz[counter].correct_answer)

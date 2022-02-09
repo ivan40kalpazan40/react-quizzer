@@ -9,6 +9,8 @@ const quizzReducer = (state, action) => {
       return { ...state, loading: false };
     case 'SCORE_UP':
       return { ...state, score: state.score + 1 };
+    case 'RESET_SCORE':
+      return { ...state, score: 0 };
     case 'COUNT_UP':
       return { ...state, counter: state.counter + 1 };
     case 'COUNTER_RESET':

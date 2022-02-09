@@ -10,7 +10,7 @@ const Navbar = () => {
           qzrr |
         </Link>
         <ul id='nav-mobile' className='right hide-on-med-and-down'>
-          {token ? (
+          {isAuthenticated ? (
             <>
               <li>
                 <Link to='/categories'>Quizz Categories</Link>

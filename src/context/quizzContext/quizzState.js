@@ -77,6 +77,11 @@ const QuizzStateProvider = (props) => {
     dispatch({ type: 'SCORE_UP' });
   };
 
+  // Reset Score
+  const resetScore = () => {
+    dispatch({ type: 'RESET_SCORE' });
+  };
+
   // Iterate Counter
   const countUp = () => {
     console.log(`From STATE Count UP `);
@@ -100,6 +105,7 @@ const QuizzStateProvider = (props) => {
         categories: state.categories,
         countUp,
         scoreUp,
+        resetScore,
         resetCounter,
         getQuizz,
         getInfo,
