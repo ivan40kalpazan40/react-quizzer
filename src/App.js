@@ -7,6 +7,7 @@ import Category from './components/Category';
 import Quizz from './components/Quizz';
 import Results from './components/Results';
 import Login from './components/Login';
+import Logout from './components/Logout';
 import Register from './components/Register';
 // import Footer from './components/Footer';
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route path='/quizz/:id/:difficulty' element={<Quizz />} />
         <Route path='/results' element={<Results />} />
         <Route path='/auth/login' element={<Login />} />
+        <Route path='/auth/logout' element={<Logout />} />
         <Route path='/auth/register' element={<Register />} />
       </Routes>
       {/* <Footer /> */}

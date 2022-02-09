@@ -1,6 +1,7 @@
 import { useParams, Link } from 'react-router-dom';
 import { useEffect, useContext } from 'react';
 import QuizzContext from '../../context/quizzContext/quizzContext';
+import { isAuth } from '../../HOC/isAuth';
 import { underscoreStringNormalizer } from '../../config/util.config';
 
 const Category = () => {
@@ -39,7 +40,7 @@ const Category = () => {
           </Link>
           <Link
             to={`/quizz/${id}/medium`}
-            className='waves-effect waves-light btn-large'
+            className='waves-effect waves-light btn-large'  
           >
             Play Medium Quizz
           </Link>
@@ -55,4 +56,4 @@ const Category = () => {
   );
 };
 
-export default Category;
+export default isAuth(Category);

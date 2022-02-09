@@ -4,8 +4,8 @@ import AuthContext from '../context/authContext/authContext';
 
 export const isAuth = (Component) => {
   const WrappedComponent = (props) => {
-    const { token } = useContext(AuthContext);
-    return token ? <Component /> : <Navigate to='/auth/login' />;
+    const { isAuthenticated } = useContext(AuthContext);
+    return isAuthenticated ? <Component /> : <Navigate to='/auth/login' />;
   };
   return WrappedComponent;
 };
