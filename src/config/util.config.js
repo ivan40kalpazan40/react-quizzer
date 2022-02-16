@@ -65,3 +65,7 @@ export const evaluateScore = (score) => {
     ? 'You Passed'
     : 'You Failed';
 };
+
+export const formatScore = (score, counter) => {
+  return ((score / (counter + 1)) * 100).toFixed(2);
+};
