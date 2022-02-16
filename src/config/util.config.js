@@ -55,3 +55,13 @@ export const parametarizer = (numberInput, difficulty, info) => {
         : info.total_hard_question_count;
   }
 };
+
+export const evaluateScore = (score) => {
+  return score > 89
+    ? 'Excellent'
+    : score > 75
+    ? 'Very Good'
+    : score > 50
+    ? 'You Passed'
+    : 'You Failed';
+};
